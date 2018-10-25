@@ -52,31 +52,31 @@ class GambitScheme < Formula
     _assert#.scm  _eval#.scm _gambitgsc.c  _kernel#.scm  _repl#.scm  _syntax-case-xform-boot.scm  _syntax-pattern.scm _syntax-xform-boot.scm  _system#.scm  _x86#.scm gambit#.scm  libgambitgsi.a  syntax-case.scm
     _codegen#.scm  _gambit#.scm _gambitgsi.c  _nonstd#.scm  _std#.scm _syntax-case-xform.scm _syntax-rules-xform.scm  _syntax-xform.scm _thread#.scm  digest#.scm libgambit.a  r4rs#.scm ]
 
-    bins.each |b| do
+    bins.each do |b|
       bin.install Dir["bin/#{b}"]
     end
 
-    gsc_links.each |l| do
+    gsc_links.each do |l|
       bin.install_symlink libexec"bin/gsc" => "#{l}"
     end
 
-    gsi_links.each |l| do
+    gsi_links.each do |l|
       bin.install_symlink libexec"bin/gsi" => "#{l}"
     end
 
-    docs.each |d| do
+    docs.each do |d|
       doc.install Dir["doc/#{d}"]
     end
 
-    includes.each |i| do
+    includes.each do |i|
       include.install Dir["include/#{i}"]
     end
 
-    infos.each |i| do
+    infos.each do |i|
       info.install Dir["info/#{i}"]
     end
 
-    libs.each |l| do
+    libs.each do |l|
       lib.install Dir["lib/#{l}"]
     end
 
