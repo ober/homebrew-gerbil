@@ -7,9 +7,9 @@ class Datadog < Formula
   depends_on "gerbil-scheme"
 
   def install
-    system
-    ENV.append_path "PATH", "/usr/local/opt/gambit-scheme/current/bin:/usr/local/opt/ga-scheme/current/bin"
 
+    ENV.append_path "PATH", "/usr/local/opt/gambit-scheme/current/bin"
+    system "gxpkg install github.com/ober/datadog"
 
   end
 
