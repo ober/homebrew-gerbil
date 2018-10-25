@@ -38,7 +38,7 @@ class GambitScheme < Formula
             bin.install Dir["bin/#{b}"]
          end
 
-    %w[ gsc-script ].each do |b|
+    %w[ gsc-script ].each do |l|
       bin.install_symlink libexec"bin/gsc" => "#{l}"
     end
 
