@@ -3,8 +3,8 @@ class Datadog < Formula
   homepage "https://github.com/ober/datadog"
   url "https://github.com/ober/datadog.git"
 
-  depends_on "gambit-scheme"
-  depends_on "gerbil-scheme"
+  #depends_on "gambit-scheme"
+  #depends_on "gerbil-scheme"
 
   def install
 
