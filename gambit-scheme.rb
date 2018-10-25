@@ -50,7 +50,7 @@ class GambitScheme < Formula
         scheme-srfi-0
         six
         six-script ].each do |l|
-            bin.install_symlink libexec"bin/gsi" => "#{l}"
+            bin.install_symlink "#{bin}/gsi" => "#{l}"
         end
 
     %W[ gambit.html gambit.pdf gambit.txt ].each do |d|
