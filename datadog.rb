@@ -1,7 +1,7 @@
 class Datadog < Formula
   desc "Datadog command line tools"
   homepage "https://github.com/ober/datadog"
-  url "https://github.com/ober/datadog.git"
+  #url "https://github.com/ober/datadog.git"
 
   #depends_on "gambit-scheme"
   #depends_on "gerbil-scheme"
