@@ -19,10 +19,10 @@ class GerbilScheme < Formula
     cd "src" do
       ENV["CC"] = "#{Formula['gcc@6'].bin}/gcc-6"
 
+      system "cd /usr/local/Cellar/gambit-scheme/4.9.0 && ln -s . v4.9.0"
       ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
       ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
       ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib}"
-      puts "XXX which gsi `which gsi`"
 
       if build.with? "leveldb"
         ENV.prepend "CPPFLAGS", "-I#{Formula["leveldb"].opt_include}"
