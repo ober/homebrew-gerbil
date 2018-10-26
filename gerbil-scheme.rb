@@ -13,11 +13,12 @@ class GerbilScheme < Formula
   depends_on "lmdb" => :optional
   depends_on "mysql" => :optional
   depends_on "openssl"
+  depends_on "sqlite3"
 
   def install
     cd "src" do
       ENV["CC"] = "#{Formula['gcc@6'].bin}/gcc-6"
-      ENV.append_path "PATH", "/usr/local/opt/gambit-scheme/current/bin"
+      ENV.prepath "PATH", "#{Formula['gambit-scheme'].bin"
 
       ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
       ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib}"
@@ -60,7 +61,7 @@ class GerbilScheme < Formula
   end
 
   test do
-    output = `#{bin}/gsi -e "(for-each write '(0 1 2 3 4 5 6 7 8 9))"`
+    output = `#{bin}/gxi -e "(for-each write '(0 1 2 3 4 5 6 7 8 9))"`
     assert_equal "0123456789", output
     assert_equal 0, $CHILD_STATUS.exitstatus
   end
