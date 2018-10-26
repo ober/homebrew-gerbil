@@ -72,6 +72,6 @@ class GambitScheme < Formula
 
     bin.install_symlink "bin/gsc" => "gsc-script"
 
-    prefix.install Dir["*"]
+#    prefix.install Dir["*"]
   end
 end
