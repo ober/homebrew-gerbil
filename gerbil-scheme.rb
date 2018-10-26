@@ -20,7 +20,7 @@ class GerbilScheme < Formula
     cd "src" do
       ENV["CC"] = "#{Formula['gcc@6'].bin}/gcc-6"
 
-      ENV.prepend "PATH", "#{Formula['gambit-scheme'].bin}"
+      ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
 
       ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
       ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib}"
