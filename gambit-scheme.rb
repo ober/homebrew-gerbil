@@ -24,7 +24,7 @@ class GambitScheme < Formula
     system "make"
     ENV.deparallelize
     #system "make", "install"
-    %w[
+    %W[
          gambcomp-C
          gambcomp-java
          gambcomp-js
@@ -38,11 +38,11 @@ class GambitScheme < Formula
             bin.install Dir["bin/#{b}"]
          end
 
-    %w[ gsc-script ].each do |l|
+    %W[ gsc-script ].each do |l|
       bin.install_symlink "#{bin}/gsc" => "#{l}"
     end
 
-    %w[
+    %W[
         gsi-script
         scheme-ieee-1178-1990
         scheme-r4rs
