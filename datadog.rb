@@ -10,7 +10,9 @@ class Datadog < Formula
     ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
     ENV.append_path "PATH", "#{Formula['gerbil-scheme'].bin}"
     ENV.prepend "LDFLAGS", "-L/usr/local/lib"
+    ENV.prepend "LDFLAGS", "-L#{Formula['openssl'].lib"
     ENV.prepend "CPPFLAGS", "-I/usr/local/include"
+    ENV.prepend "CPPFLAGS", "-I#{Formula['openssl'].include"
     system "./build.ss static"
     bin.install Dir["./datadog"]
   end
