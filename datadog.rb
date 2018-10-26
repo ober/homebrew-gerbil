@@ -3,12 +3,12 @@ class Datadog < Formula
   homepage "https://github.com/ober/datadog"
   url "https://github.com/ober/datadog.git"
   version "master"
-  #depends_on "gambit-scheme"
-  #depends_on "gerbil-scheme"
+  depends_on "gambit-scheme"
+  depends_on "gerbil-scheme"
 
   def install
-    ENV.append_path "PATH", "#{Formula["gambit-scheme"]bin"
-    ENV.append_path "PATH", "#{Formula["gerbil-scheme"]bin"
+    ENV.append_path "PATH", "#{Formula["gambit-scheme"]bin}"
+    ENV.append_path "PATH", "#{Formula["gerbil-scheme"]bin}"
     system "./build.ss static"
     bin.install Dir["./datadog"]
   end
