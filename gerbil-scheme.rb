@@ -16,9 +16,10 @@ class GerbilScheme < Formula
   depends_on "sqlite3"
 
   def install
+    puts "XXX: #{Formula['gambit-scheme'].bin}"
     cd "src" do
       ENV["CC"] = "#{Formula['gcc@6'].bin}/gcc-6"
-      puts "XXX: #{Formula['gambit-scheme'].bin}"
+
       ENV.prepend "PATH", "#{Formula['gambit-scheme'].bin}"
 
       ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
