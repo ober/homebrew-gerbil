@@ -11,7 +11,7 @@ class Datadog < Formula
     ENV.append_path "PATH", "#{Formula['gerbil-scheme'].bin}"
     ENV.prepend "LDFLAGS", "-L/usr/local/lib"
     ENV.prepend "CPPFLAGS", "-I/usr/local/include"
-    system "./build.ss"
+    system "./build.ss static"
     bin.install Dir["./datadog"]
   end
 
