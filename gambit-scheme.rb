@@ -25,10 +25,6 @@ class GambitScheme < Formula
     system "make"
     ENV.deparallelize
     #system "make", "install"
-
-    bin.install Dir["bin/*"]
-    lib.install Dir["lib/*"]
-    include.install Dir["include/*"]
-    doc.install Dir["doc/*"]
+    prefix.install Dir["*"]
   end
 end
