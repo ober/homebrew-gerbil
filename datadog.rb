@@ -15,6 +15,7 @@ class Datadog < Formula
     ENV.prepend "CPPFLAGS", "-I#{Formula['openssl'].include}"
     system "./build.ss static"
     bin.install Dir["./datadog"]
+    bin.install_symlink "datadog" => "dda"
   end
 
   test do
