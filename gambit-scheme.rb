@@ -1,8 +1,9 @@
 class GambitScheme < Formula
   desc "Gambit Scheme"
   homepage "https://gambitscheme.org"
+  version "4.9.0"
   url "https://github.com/gambit/gambit.git",
-      :tag => "v4.9.0"
+      :tag => "v#{version}"
 
   depends_on "gcc@6"
   depends_on "openssl"
@@ -28,7 +29,6 @@ class GambitScheme < Formula
 
     bin.install Dir["gsc/gsc"]
     bin.install Dir["gsi/gsi"]
-
 
     %W[ gambcomp-C
         gambcomp-java
@@ -71,6 +71,7 @@ class GambitScheme < Formula
     end
 
     bin.install_symlink "bin/gsc" => "gsc-script"
+    system "ln -s #{prefix}/#{version} #{prefix}/#{version}/v#{version}"
 
 #    prefix.install Dir["*"]
   end
