@@ -20,6 +20,10 @@ class GambitScheme < Formula
 
     ENV["CC"] = "#{Formula['gcc@6'].bin}/gcc-6"
     #ENV["PATH"] = "#{ENV['PATH']}:/usr/local/bin" # pdf2ps not found otherwise
+
+    system "sed -i -e 's#SSL_CTX_set_default_verify_paths (c->tls_ctx);##g' lib/os_io.c"
+    system "sed -i -e 's#SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);##g' lib/os_io.c"
+
     system "./configure", *args
     system "make", "bootstrap"
     system "make", "bootclean"
@@ -73,6 +77,6 @@ class GambitScheme < Formula
     bin.install_symlink "bin/gsc" => "gsc-script"
     system "ln -s #{prefix} #{prefix}/v#{version}"
 
-#    prefix.install Dir["*"]
+
   end
 end
