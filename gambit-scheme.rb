@@ -5,6 +5,7 @@ class GambitScheme < Formula
       :tag => "v4.9.0"
 
   depends_on "gcc@6"
+  depends_on "openssl"
 
   def install
     args = %W[
@@ -25,21 +26,22 @@ class GambitScheme < Formula
     ENV.deparallelize
     #system "make", "install"
     %W[
-         gambcomp-C
-         gambcomp-java
-         gambcomp-js
-         gambcomp-php
-         gambcomp-python
-         gambcomp-ruby
-         gambdoc
-         gsc
-         gsi
+        gsc
+        gsi
+        gambcomp-C
+        gambcomp-java
+        gambcomp-js
+        gambcomp-php
+        gambcomp-python
+        gambcomp-ruby
+        gambdoc
          ].each do |b|
-            bin.install Dir["bin/#{b}"]
+           puts "XXX installing #{b}"
+           bin.install Dir["bin/#{b}"]
          end
 
     %W[ gsc-script ].each do |l|
-      bin.install_symlink "#{bin}/gsc" => "#{l}"
+      bin.install_symlink "#{bin}/#{l}" => "#{bin}/gsc"
     end
 
     %W[
@@ -50,7 +52,7 @@ class GambitScheme < Formula
         scheme-srfi-0
         six
         six-script ].each do |l|
-            bin.install_symlink "#{bin}/gsi" => "#{l}"
+            bin.install_symlink "#{bin}/#{l}" => "#{bin}/gsi"
         end
 
     %W[ gambit.html gambit.pdf gambit.txt ].each do |d|
