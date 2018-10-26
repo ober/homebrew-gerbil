@@ -41,7 +41,7 @@ class GambitScheme < Formula
          end
 
     %W[ gsc-script ].each do |l|
-      bin.install_symlink "#{bin}/#{l}" => "#{bin}/gsc"
+      bin.install_symlink bin/"gsc" => "#{l}"
     end
 
     %W[
@@ -52,7 +52,8 @@ class GambitScheme < Formula
         scheme-srfi-0
         six
         six-script ].each do |l|
-            bin.install_symlink "#{bin}/#{l}" => "#{bin}/gsi"
+          puts "XXX link bin/gsi to #{l}"
+          bin.install_symlink "bin/gsi" => "#{l}"
         end
 
     %W[ gambit.html gambit.pdf gambit.txt ].each do |d|
