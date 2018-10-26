@@ -9,7 +9,7 @@ class Datadog < Formula
   def install
     ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
     ENV.append_path "PATH", "#{Formula['gerbil-scheme'].bin}"
-    system "./build.ss static"
+    system "./build.ss"
     bin.install Dir["./datadog"]
   end
 
