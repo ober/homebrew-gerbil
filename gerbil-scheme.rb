@@ -6,10 +6,9 @@ class GerbilScheme < Formula
   head "https://github.com/vyzo/gerbil.git"
 
   depends_on "gcc@6"
-
   depends_on "leveldb" => :optional
-  depends_on "libyaml"
   depends_on "libxml2" => :optional
+  depends_on "libyaml"
   depends_on "lmdb" => :optional
   depends_on "mysql" => :optional
   depends_on "openssl"
