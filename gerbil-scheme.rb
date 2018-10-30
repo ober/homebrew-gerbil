@@ -8,7 +8,7 @@ class GerbilScheme < Formula
   depends_on "gcc@6"
 
   depends_on "leveldb" => :optional
-  depends_on "libyaml" => :optional
+  depends_on "libyaml"
   depends_on "libxml2" => :optional
   depends_on "lmdb" => :optional
   depends_on "mysql" => :optional
@@ -35,11 +35,11 @@ class GerbilScheme < Formula
         inreplace "std/build-features.ss", '(enable libxml #f)', '(enable libxml #t)'
       end
 
-      if build.with? "libyaml"
+      #if build.with? "libyaml"
         ENV.prepend "CPPFLAGS", "-I#{Formula["libyaml"].opt_include}"
         ENV.prepend "LDFLAGS", "-L#{Formula["libyaml"].opt_lib}"
         inreplace "std/build-features.ss", '(enable libyaml #f)', '(enable libyaml #t)'
-      end
+      #end
 
       if build.with? "lmdb"
         ENV.prepend "CPPFLAGS", "-I#{Formula["lmdb"].opt_include}"
