@@ -4,7 +4,7 @@ class Datadog < Formula
   url "https://github.com/ober/datadog.git"
   version "master"
   depends_on "gambit-scheme"
-  depends_on "gerbil-scheme"
+  depends_on "gerbil-scheme" => "with-yaml"
 
   def install
     ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
