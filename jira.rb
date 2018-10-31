@@ -18,7 +18,7 @@ class Jira < Formula
   end
 
   test do
-    output = `#{bin}/slack`
+    output = `#{bin}/jira`
     assert_equal 0, $CHILD_STATUS.exitstatus
   end
 
