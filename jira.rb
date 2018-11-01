@@ -14,7 +14,7 @@ class Jira < Formula
     ENV.prepend "LDFLAGS", "-L#{Formula['openssl'].lib}/openssl"
     ENV.prepend "LDFLAGS", "-L/usr/local/lib/"
     system "./build.ss static"
-    bin.install Dir["./slack"]
+    bin.install Dir["./jira"]
   end
 
   test do
