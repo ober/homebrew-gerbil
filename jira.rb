@@ -10,8 +10,10 @@ class Jira < Formula
     ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
     ENV.append_path "PATH", "#{Formula['gerbil-scheme'].bin}"
     ENV.prepend "CPPFLAGS", "-I#{Formula['openssl'].include}"
+    ENV.prepend "CPPFLAGS", "-I#{Formula['libyaml'].include}"
     ENV.prepend "CPPFLAGS", "-I/usr/local/include"
     ENV.prepend "LDFLAGS", "-L#{Formula['openssl'].lib}/openssl"
+    ENV.prepend "LDFLAGS", "-L#{Formula['libyaml'].lib}/openssl"
     ENV.prepend "LDFLAGS", "-L/usr/local/lib/"
     system "./build.ss static"
     bin.install Dir["./jira"]
