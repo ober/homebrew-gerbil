@@ -7,13 +7,15 @@ class Datadog < Formula
   depends_on "gerbil-scheme" => "with-yaml"
 
   def install
+    openssl = Formula["openssl"]
+    ENV.prepend "LDFLAGS", "-L#{openssl.opt_lib}"
+    ENV.prepend "CPPFLAGS", "-I#{openssl.opt_include}"
+
     ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
     ENV.append_path "PATH", "#{Formula['gerbil-scheme'].bin}"
-    ENV.prepend "LDFLAGS", "-L/usr/local/lib/"
-    ENV.prepend "LDFLAGS", "-L#{Formula['openssl'].lib}/openssl"
-    ENV.prepend "CPPFLAGS", "-I/usr/local/include"
-    ENV.prepend "CPPFLAGS", "-I#{Formula['openssl'].include}"
+
     system "./build.ss static"
+
     bin.install Dir["./datadog"]
     bin.install_symlink "datadog" => "dda"
   end

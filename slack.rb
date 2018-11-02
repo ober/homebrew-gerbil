@@ -3,19 +3,23 @@ class Slack < Formula
   homepage "https://github.com/ober/slack"
   url "https://github.com/ober/slack.git"
   version "master"
-  depends_on "gambit-scheme"
-  depends_on "gerbil-scheme" => [ "with-yaml", "with-leveldb" ]
+
+  depends_on "gerbil-scheme" => "with-leveldb"
 
   def install
+    openssl = Formula["openssl"]
+    ENV.prepend "LDFLAGS", "-L#{openssl.opt_lib}"
+    ENV.prepend "CPPFLAGS", "-I#{openssl.opt_include}"
+
+    leveldb = Formula["leveldb"]
+    ENV.prepend "LDFLAGS", "-L#{leveldb.opt_lib}"
+    ENV.prepend "CPPFLAGS", "-I#{leveldb.opt_include}"
+
     ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
     ENV.append_path "PATH", "#{Formula['gerbil-scheme'].bin}"
-    ENV.prepend "LDFLAGS", "-L/usr/local/lib/"
-    ENV.prepend "LDFLAGS", "-L#{Formula['openssl'].lib}/openssl"
-    ENV.prepend "LDFLAGS", "-L#{Formula['leveldb'].lib}/leveldb"
-    ENV.prepend "CPPFLAGS", "-I/usr/local/include"
-    ENV.prepend "CPPFLAGS", "-I#{Formula['openssl'].include}"
-    ENV.prepend "CPPFLAGS", "-I#{Formula['leveldb'].include}"
+
     system "./build.ss static"
+
     bin.install Dir["./slack"]
   end
 

@@ -4,17 +4,18 @@ class Jira < Formula
   url "https://github.com/ober/jira.git"
   version "master"
 
-  depends_on "gerbil-scheme" => [ "with-yaml", "with-openssl" ]
-  depends_on "openssl"
+  depends_on "gerbil-scheme"
 
   def install
+    openssl = Formula["openssl"]
+    ENV.prepend "LDFLAGS", "-L#{openssl.opt_lib}"
+    ENV.prepend "CPPFLAGS", "-I#{openssl.opt_include}"
+
     ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
     ENV.append_path "PATH", "#{Formula['gerbil-scheme'].bin}"
-    ENV.prepend "CPPFLAGS", "-I#{Formula['openssl'].opt_include}"
-    ENV.prepend "CPPFLAGS", "-I/usr/local/include"
-    ENV.prepend "LDFLAGS", "-L#{Formula['openssl'].opt_lib}/openssl"
-    ENV.prepend "LDFLAGS", "-L/usr/local/lib/"
+
     system "./build.ss static"
+
     bin.install Dir["./jira"]
   end
 

@@ -3,16 +3,17 @@ class Confluence < Formula
   homepage "https://github.com/ober/confluence"
   url "https://github.com/ober/confluence.git"
   version "master"
-  depends_on "gambit-scheme"
-  depends_on "gerbil-scheme" => "with-yaml"
+
+  depends_on "gerbil-scheme"
 
   def install
+    openssl = Formula["openssl"]
+    ENV.prepend "CPPFLAGS", "-I#{Formula['openssl'].opt_include}"
+    ENV.prepend "LDFLAGS", "-L#{Formula['openssl'].opt_lib}"
+
     ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
     ENV.append_path "PATH", "#{Formula['gerbil-scheme'].bin}"
-    ENV.prepend "CPPFLAGS", "-I#{Formula['openssl'].include}"
-    ENV.prepend "CPPFLAGS", "-I/usr/local/include"
-    ENV.prepend "LDFLAGS", "-L#{Formula['openssl'].lib}/openssl"
-    ENV.prepend "LDFLAGS", "-L/usr/local/lib/"
+
     system "./build.ss static"
     bin.install Dir["./confluence"]
   end
