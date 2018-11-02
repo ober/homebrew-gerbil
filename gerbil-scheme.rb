@@ -9,11 +9,12 @@ class GerbilScheme < Formula
   depends_on "gcc@6"
   depends_on "leveldb" => :optional
   depends_on "libxml2" => :optional
-  depends_on "libyaml"
+  depends_on "libyaml" => :optional
   depends_on "lmdb" => :optional
   depends_on "mysql" => :optional
   depends_on "openssl"
   depends_on "sqlite3"
+  depends_on "zlib"
 
 
   def install
