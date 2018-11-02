@@ -9,7 +9,7 @@ class GambitScheme < Formula
   def install
     args = %W[--prefix=#{prefix}]
 
-    ENV["CC"] = '#{Formula["gcc@6"].bin}/gcc-6'
+    ENV["CC"] = Formula["gcc@6"].bin/"gcc-6"
 
     if build.with? "disable-ssl-verification"
       system "sed -i -e 's#SSL_CTX_set_default_verify_paths (c->tls_ctx);##g' lib/os_io.c"
@@ -77,50 +77,48 @@ class GambitScheme < Formula
       info.install Dir["info/#{i}"]
     end
 
-    %w[_std#.scm
-     _syntax-case-xform.scm
-     _syntax-rules-xform.scm
-     _syntax-xform.scm
-     _thread#.scm
-     digest#.scm
-     libgambit.ar4rs#.scm
-    _assert#.scm
-    _codegen#.scm
-    _define-syntax.scm
-    _eval#.scm
-    _gambit#.scm
-    _gambit.c
-    _gambitgsc.c
-    _gambitgsi.c
-    _io#.scm
-    _kernel#.scm
-    _nonstd#.scm
-    _num#.scm
-    _repl#.scm
-    _syntax-boot.scm
-    _syntax-case-xform-boot.scm
-    _syntax-common.scm
-    _syntax-pattern.scm
-    _syntax-template.scm
-    _syntax-xform-boot.scm
-    _syntax.scm
-    _system#.scm
-    _with-syntax-boot.scm
-    _x86#.scm
-    digest.scm
-    gambit#.scm
-    libgambitgsc.a
-    libgambitgsi.a
-    r5rs#.scm
-    syntax-case.scm
-    _asm#.scm].each do |l|
-
+    %w[ _std#.scm
+        _syntax-case-xform.scm
+        _syntax-rules-xform.scm
+        _syntax-xform.scm
+        _thread#.scm
+        digest#.scm
+        libgambit.ar4rs#.scm
+        _assert#.scm
+        _codegen#.scm
+        _define-syntax.scm
+        _eval#.scm
+        _gambit#.scm
+        _gambit.c
+        _gambitgsc.c
+        _gambitgsi.c
+        _io#.scm
+        _kernel#.scm
+        _nonstd#.scm
+        _num#.scm
+        _repl#.scm
+        _syntax-boot.scm
+        _syntax-case-xform-boot.scm
+        _syntax-common.scm
+        _syntax-pattern.scm
+        _syntax-template.scm
+        _syntax-xform-boot.scm
+        _syntax.scm
+        _system#.scm
+        _with-syntax-boot.scm
+        _x86#.scm
+        digest.scm
+        gambit#.scm
+        libgambitgsc.a
+        libgambitgsi.a
+        r5rs#.scm
+        syntax-case.scm
+        _asm#.scm ].each do |l|
       lib.install Dir["lib/#{l}"]
     end
 
     bin.install_symlink "bin/gsc" => "gsc-script"
-    system "ln -s #{prefix} #{prefix}/v#{version}"
-
+    prefix.install_symlink prefix "#{prefix}/v#{version}"
   end
 
   test do
