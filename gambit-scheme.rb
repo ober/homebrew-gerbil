@@ -6,23 +6,37 @@ class GambitScheme < Formula
       :tag => "v#{version}"
 
   depends_on "gcc@6"
-  depends_on "openssl"
+  depends_on "openssl" => :optional
 
   def install
-    args = %W[
-            --prefix=#{prefix}
-            --enable-single-host
-            --enable-multiple-versions
-            --enable-openssl
-            --enable-default-runtime-options=f8,-8,t8
-            --enable-poll
-    ]
+    args = %W[ --prefix=#{prefix} ]
 
     ENV["CC"] = "#{Formula['gcc@6'].bin}/gcc-6"
-    #ENV["PATH"] = "#{ENV['PATH']}:/usr/local/bin" # pdf2ps not found otherwise
 
-    system "sed -i -e 's#SSL_CTX_set_default_verify_paths (c->tls_ctx);##g' lib/os_io.c"
-    system "sed -i -e 's#SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);##g' lib/os_io.c"
+    if build.with? "disable-ssl-verification"
+      system "sed -i -e 's#SSL_CTX_set_default_verify_paths (c->tls_ctx);##g' lib/os_io.c"
+      system "sed -i -e 's#SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);##g' lib/os_io.c"
+    end
+
+    if build.with? "single-host"
+      args << "--enable-single-host"
+    end
+
+    if build.with? "multiple-versions"
+      args << "--enable-multiple-versions"
+    end
+
+    if build.with? "gerbil-options"
+      args << "--enable-default-runtime-options=f8,-8,t8"
+    end
+
+    if build.with? "poll"
+      args << "--enable-poll"
+    end
+
+    if build-with? "openssl"
+      args << "--enable-openssl"
+    end
 
     system "./configure", *args
     system "make", "bootstrap"

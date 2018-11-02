@@ -5,6 +5,7 @@ class GerbilScheme < Formula
   sha256 "b464579f82682d733752a40a3e164fb387de94e05f220d04bfb43f2a70db40e3"
   head "https://github.com/vyzo/gerbil.git"
 
+  depends_on "gambit-scheme" => [ "with-single-host", "with-multiple-versions", "with-poll", "with-openssl", "with-gerbil-options" ]
   depends_on "gcc@6"
   depends_on "leveldb" => :optional
   depends_on "libxml2" => :optional
@@ -13,6 +14,7 @@ class GerbilScheme < Formula
   depends_on "mysql" => :optional
   depends_on "openssl"
   depends_on "sqlite3"
+
 
   def install
     cd "src" do
