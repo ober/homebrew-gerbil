@@ -34,7 +34,7 @@ class GambitScheme < Formula
       args << "--enable-poll"
     end
 
-    if build-with? "openssl"
+    if build.with? "openssl"
       args << "--enable-openssl"
     end
 
