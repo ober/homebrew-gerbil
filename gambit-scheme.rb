@@ -37,8 +37,6 @@ class GambitScheme < Formula
     end
 
     system "./configure", *args
-    system "make", "bootstrap"
-    system "make", "bootclean"
     system "make"
     ENV.deparallelize
 
