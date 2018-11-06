@@ -21,21 +21,22 @@ class GerbilScheme < Formula
     cd "src" do
       ENV["CC"] = "#{Formula['gcc@6'].bin}/gcc-6"
 
+      ENV.append_path "PATH", "/usr/local/Cellar/gambit-scheme/4.9.0/v4.9.0/bin"
       ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
       ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
       ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib}"
 
-      if build.with? "leveldb"
+      #if build.with? "leveldb"
         ENV.prepend "CPPFLAGS", "-I#{Formula["leveldb"].opt_include}"
         ENV.prepend "LDFLAGS", "-L#{Formula["leveldb"].opt_lib}"
         inreplace "std/build-features.ss", '(enable leveldb #f)', '(enable leveldb #t)'
-      end
+    #end
 
-      if build.with? "libxml2"
+     # if build.with? "libxml2"
         ENV.prepend "CPPFLAGS", "-I#{Formula["libxml2"].opt_include}"
         ENV.prepend "LDFLAGS", "-L#{Formula["libxml2"].opt_lib}"
         inreplace "std/build-features.ss", '(enable libxml #f)', '(enable libxml #t)'
-      end
+      #end
 
       #if build.with? "libyaml"
         ENV.prepend "CPPFLAGS", "-I#{Formula["libyaml"].opt_include}"
@@ -49,11 +50,11 @@ class GerbilScheme < Formula
         inreplace "std/build-features.ss", '(enable lmdb #f)', '(enable lmdb #t)'
       end
 
-      if build.with? "mysql"
+      #if build.with? "mysql"
         ENV.prepend "CPPFLAGS", "-I#{Formula["mysql"].opt_include}"
         ENV.prepend "LDFLAGS", "-L#{Formula["mysql"].opt_lib}"
         inreplace "std/build-features.ss", '(enable mysql #f)', '(enable mysql #t)'
-      end
+      #end
 
       system "./build.sh"
     end
