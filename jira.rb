@@ -7,10 +7,15 @@ class Jira < Formula
   depends_on "gerbil-scheme"
 
   def install
+
     openssl = Formula["openssl"]
     ENV.prepend "LDFLAGS", "-L#{openssl.opt_lib}"
     ENV.prepend "CPPFLAGS", "-I#{openssl.opt_include}"
 
+    gambit = Formula["gambit-scheme"]
+    ENV.append_path "PATH", gambit.opt_bin
+    puts "XXX: #{Formula['gambit-scheme'].bin}"
+    puts "XXX: #{Formula['gambit-scheme'].opt_bin}"
     ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
     ENV.append_path "PATH", "#{Formula['gerbil-scheme'].bin}"
 
