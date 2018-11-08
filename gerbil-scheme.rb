@@ -8,8 +8,8 @@ class GerbilScheme < Formula
   depends_on "gambit-scheme" => [ "with-single-host", "with-multiple-versions", "with-openssl", "with-gerbil-options", "disable-ssl-verification" ]
   depends_on "gcc@6"
   depends_on "leveldb" => :optional
-  depends_on "libxml2" => :optional
-  depends_on "libyaml" => :optional
+  depends_on "libxml2" #=> :optional
+  depends_on "libyaml" #=> :optional
   depends_on "lmdb" => :optional
   depends_on "mysql" => :optional
   depends_on "openssl"
@@ -50,11 +50,11 @@ class GerbilScheme < Formula
         inreplace "std/build-features.ss", '(enable lmdb #f)', '(enable lmdb #t)'
       end
 
-      #if build.with? "mysql"
+      if build.with? "mysql"
         ENV.prepend "CPPFLAGS", "-I#{Formula["mysql"].opt_include}"
         ENV.prepend "LDFLAGS", "-L#{Formula["mysql"].opt_lib}"
         inreplace "std/build-features.ss", '(enable mysql #f)', '(enable mysql #t)'
-      #end
+      end
 
       system "./build.sh"
     end
