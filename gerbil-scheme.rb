@@ -1,7 +1,7 @@
 class GerbilScheme < Formula
   desc "An opinionated dialect of Scheme designed for Systems Programming"
   homepage "https://cons.io"
-  url "https://github.com/vyzo/gerbil.git"
+  url "https://github.com/vyzo/gerbil.git", :tag => "v0.14-DEV"
 #  sha256 "b464579f82682d733752a40a3e164fb387de94e05f220d04bfb43f2a70db40e3"
 #  head "https://github.com/vyzo/gerbil.git"
 
