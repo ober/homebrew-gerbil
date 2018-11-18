@@ -4,37 +4,25 @@ class GambitScheme < Formula
   url "https://github.com/gambit/gambit.git", :tag => "v4.9.1"
 
   depends_on "gcc@6"
-  depends_on "openssl" => :optional
+  depends_on "openssl"
 
   def install
-    args = %W[--prefix=#{prefix}]
+    args = %W[
+         --prefix=#{prefix
+         --enable-single-host
+         --enable-multiple-versions
+         --enable-default-runtime-options=f8,-8,t8
+         --enable-poll
+         --enable-openssl
+    ]
 
     ENV["CC"] = Formula["gcc@6"].bin/"gcc-6"
 
-    #if build.with? "disable-ssl-verification"
-    system "sed -i -e 's#SSL_CTX_set_default_verify_paths (c->tls_ctx);##g' lib/os_io.c"
-    system "sed -i -e 's#SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);##g' lib/os_io.c"
-    #end
-
-    #if build.with? "single-host"
-    args << "--enable-single-host"
-    #end
-
-    #if build.with? "multiple-versions"
-    args << "--enable-multiple-versions"
-    #end
-
-    #if build.with? "gerbil-options"
-    args << "--enable-default-runtime-options=f8,-8,t8"
-    #end
-
-    #if build.with? "poll"
-    args << "--enable-poll"
-    #end
-
-    #if build.with? "openssl"
-    args << "--enable-openssl"
-    #end
+    # Disable forced ssl validation on self signed certs
+    inreplace "lib/os_io.c" do |s|
+      s.gsub "SSL_CTX_set_default_verify_paths (c->tls_ctx);", ""
+      s.gsub "SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);", ""
+    end
 
     system "./configure", *args
     system "make"
