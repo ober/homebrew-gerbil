@@ -11,7 +11,7 @@ class GerbilScheme < Formula
   depends_on "libxml2"
   depends_on "libyaml"
   depends_on "lmdb"
-  depends_on "mysql"
+#  depends_on "mysql"
   depends_on "openssl"
   depends_on "sqlite3"
   depends_on "zlib"
@@ -28,7 +28,7 @@ class GerbilScheme < Formula
         s.gsub "(enable libxml #f)", "(enable libxml #t)"
         s.gsub "(enable libyaml #f)", "(enable libyaml #t)"
         s.gsub "(enable lmdb #f)", "(enable lmdb #t)"
-        s.gsub "(enable mysql #f)", "(enable mysql #t)"
+ #       s.gsub "(enable mysql #f)", "(enable mysql #t)"
       end
 
       #ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
