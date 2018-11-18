@@ -18,7 +18,6 @@ class GambitScheme < Formula
 
     ENV["CC"] = Formula["gcc@6"].bin/"gcc-6"
 
-    # Disable forced ssl validation on self signed certs
     inreplace "lib/os_io.c" do |s|
       s.gsub "SSL_CTX_set_default_verify_paths (c->tls_ctx);", ""
       s.gsub "SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);", ""
