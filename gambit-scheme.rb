@@ -1,7 +1,7 @@
 class GambitScheme < Formula
   desc "Gambit Scheme"
   homepage "https://gambitscheme.org"
-  url "https://github.com/gambit/gambit.git", :tag => "v4.9.0"
+  url "https://github.com/gambit/gambit.git", :tag => "v4.9.1"
 
   depends_on "gcc@6"
   depends_on "openssl" => :optional
