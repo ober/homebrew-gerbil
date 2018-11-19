@@ -2,7 +2,7 @@ class GerbilScheme < Formula
   desc "An opinionated dialect of Scheme designed for Systems Programming"
   homepage "https://cons.io"
   url "https://github.com/vyzo/gerbil/archive/v0.14.tar.gz"
-  sha256 "ced4f3a0a099ec17a7a7f52f5229c85c025dd0134a3c9b3a57c33c4f3a175844"
+  sha256 "8525877960ba7a6122d6dfd2bae34ed1437d5231f9e31de97bbe6106c4dfa03a"
   head "https://github.com/vyzo/gerbil.git"
 
   depends_on "gambit-scheme"
