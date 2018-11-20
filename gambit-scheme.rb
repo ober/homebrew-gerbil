@@ -25,7 +25,7 @@ class GambitScheme < Formula
 
     system "./configure", *args
     system "make"
-#    ENV.deparallelize
+    ENV.deparallelize
     system "make install"
   end
 
