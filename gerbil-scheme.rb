@@ -24,11 +24,11 @@ class GerbilScheme < Formula
       ENV.append_path "PATH", "/usr/local/Cellar/gambit-scheme/4.9.1/v4.9.1/bin"
 
       inreplace "std/build-features.ss" do |s|
-        s.gsub "(enable leveldb #f)", "(enable leveldb #t)"
-        s.gsub "(enable libxml #f)", "(enable libxml #t)"
-        s.gsub "(enable libyaml #f)", "(enable libyaml #t)"
-        s.gsub "(enable lmdb #f)", "(enable lmdb #t)"
-        s.gsub "(enable mysql #f)", "(enable mysql #t)" if MacOS.version > "10.11"
+        s.gsub! "(enable leveldb #f)", "(enable leveldb #t)"
+        s.gsub! "(enable libxml #f)", "(enable libxml #t)"
+        s.gsub! "(enable libyaml #f)", "(enable libyaml #t)"
+        s.gsub! "(enable lmdb #f)", "(enable lmdb #t)"
+        s.gsub! "(enable mysql #f)", "(enable mysql #t)" if MacOS.version > "10.11"
       end
 
       #ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
