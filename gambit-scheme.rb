@@ -1,7 +1,9 @@
 class GambitScheme < Formula
-  desc "Gambit Scheme"
+  desc "The Gambit Scheme system is a complete, portable, efficient and reliable implementation of the Scheme programming language."
   homepage "https://gambitscheme.org"
-  url "https://github.com/gambit/gambit.git", :tag => "v4.9.1"
+  url "https://github.com/gambit/gambit/archive/v4.9.1.tar.gz"
+  sha256 "3b08b347f89ea0cdbd01c90108abf5fb1c6d2d649a7c3050590d398bb6845f1c"
+  head "https://github.com/gambit/gambit.git"
 
   depends_on "gcc@6"
   depends_on "openssl"
