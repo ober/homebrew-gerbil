@@ -1,5 +1,5 @@
 class GambitScheme < Formula
-  desc "The Gambit Scheme system is a complete, portable, efficient and reliable implementation of the Scheme programming language."
+  desc "The Gambit Scheme system is a complete, portable, efficient and reliable implementation of Scheme"
   homepage "http://gambitscheme.org"
   url "https://github.com/gambit/gambit/archive/v4.9.1.tar.gz"
   sha256 "667ae2ee657c22621a60b3eda6e242224d41853adb841e6ff9bc779f19921c18"
@@ -27,7 +27,7 @@ class GambitScheme < Formula
     system "./configure", *args
     system "make"
     ENV.deparallelize
-    system "make install"
+    system "make", "install"
   end
 
   test do
