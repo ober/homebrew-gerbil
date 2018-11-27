@@ -16,7 +16,6 @@ class GerbilScheme < Formula
   depends_on "sqlite3"
   depends_on "zlib"
 
-
   def install
     cd "src" do
       ENV["CC"] = "#{Formula['gcc@6'].bin}/gcc-6"
@@ -38,8 +37,8 @@ class GerbilScheme < Formula
       # ENV.prepend "LDFLAGS", "-L#{Formula["leveldb"].opt_lib}"
       # ENV.prepend "CPPFLAGS", "-I#{Formula["libxml2"].opt_include}"
       # ENV.prepend "LDFLAGS", "-L#{Formula["libxml2"].opt_lib}"
-      # ENV.prepend "CPPFLAGS", "-I#{Formula["libyaml"].opt_include}"
-      # ENV.prepend "LDFLAGS", "-L#{Formula["libyaml"].opt_lib}"
+      ENV.prepend "CPPFLAGS", "-I#{Formula["libyaml"].opt_include}"
+      ENV.prepend "LDFLAGS", "-L#{Formula["libyaml"].opt_lib}"
       # ENV.prepend "CPPFLAGS", "-I#{Formula["lmdb"].opt_include}"
       # ENV.prepend "LDFLAGS", "-L#{Formula["lmdb"].opt_lib}"
       # ENV.prepend "CPPFLAGS", "-I#{Formula["mysql"].opt_include}"
