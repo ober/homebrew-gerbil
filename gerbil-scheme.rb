@@ -31,8 +31,8 @@ class GerbilScheme < Formula
       end
 
       #ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
-      # ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
-      # ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib}"
+      ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
+      ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib}"
       # ENV.prepend "CPPFLAGS", "-I#{Formula["leveldb"].opt_include}"
       # ENV.prepend "LDFLAGS", "-L#{Formula["leveldb"].opt_lib}"
       # ENV.prepend "CPPFLAGS", "-I#{Formula["libxml2"].opt_include}"
