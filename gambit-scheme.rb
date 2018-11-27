@@ -1,9 +1,8 @@
 class GambitScheme < Formula
   desc "The Gambit Scheme system is a complete, portable, efficient and reliable implementation of the Scheme programming language."
-  homepage "https://gambitscheme.org"
+  homepage "http://gambitscheme.org"
   url "https://github.com/gambit/gambit/archive/v4.9.1.tar.gz"
-  sha256 "3b08b347f89ea0cdbd01c90108abf5fb1c6d2d649a7c3050590d398bb6845f1c"
-  head "https://github.com/gambit/gambit.git"
+  sha256 "667ae2ee657c22621a60b3eda6e242224d41853adb841e6ff9bc779f19921c18"
 
   depends_on "gcc@6"
   depends_on "openssl"
@@ -21,8 +20,8 @@ class GambitScheme < Formula
     ENV["CC"] = Formula["gcc@6"].bin/"gcc-6"
 
     inreplace "lib/os_io.c" do |s|
-      s.gsub "SSL_CTX_set_default_verify_paths (c->tls_ctx);", ""
-      s.gsub "SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);", ""
+      s.gsub! "SSL_CTX_set_default_verify_paths (c->tls_ctx);", ""
+      s.gsub! "SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);", ""
     end
 
     system "./configure", *args
