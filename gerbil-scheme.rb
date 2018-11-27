@@ -11,7 +11,7 @@ class GerbilScheme < Formula
   depends_on "libxml2"
   depends_on "libyaml"
   depends_on "lmdb"
-  depends_on "mysql" if MacOS.version > "10.11"
+#  depends_on "mysql" if MacOS.version > "10.11"
   depends_on "openssl"
   depends_on "sqlite3"
   depends_on "zlib"
@@ -27,7 +27,7 @@ class GerbilScheme < Formula
         s.gsub! "(enable libxml #f)", "(enable libxml #t)"
         s.gsub! "(enable libyaml #f)", "(enable libyaml #t)"
         s.gsub! "(enable lmdb #f)", "(enable lmdb #t)"
-        s.gsub! "(enable mysql #f)", "(enable mysql #t)" if MacOS.version > "10.11"
+#        s.gsub! "(enable mysql #f)", "(enable mysql #t)" if MacOS.version > "10.11"
       end
 
       #ENV.append_path "PATH", "#{Formula['gambit-scheme'].bin}"
@@ -41,8 +41,8 @@ class GerbilScheme < Formula
       ENV.prepend "LDFLAGS", "-L#{Formula["libyaml"].opt_lib}"
       # ENV.prepend "CPPFLAGS", "-I#{Formula["lmdb"].opt_include}"
       # ENV.prepend "LDFLAGS", "-L#{Formula["lmdb"].opt_lib}"
-      ENV.prepend "CPPFLAGS", "-I#{Formula["mysql"].opt_include}" if MacOS.version > "10.11"
-      ENV.prepend "LDFLAGS", "-L#{Formula["mysql"].opt_lib}" if MacOS.version > "10.11"
+      # ENV.prepend "CPPFLAGS", "-I#{Formula["mysql"].opt_include}" if MacOS.version > "10.11"
+      # ENV.prepend "LDFLAGS", "-L#{Formula["mysql"].opt_lib}" if MacOS.version > "10.11"
 
       system "./build.sh"
     end
