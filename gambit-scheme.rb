@@ -5,7 +5,7 @@ class GambitScheme < Formula
   sha256 "667ae2ee657c22621a60b3eda6e242224d41853adb841e6ff9bc779f19921c18"
 
   depends_on "openssl"
-  depends_on "gcc@6"
+  depends_on "gcc"
 
   def install
     args = %W[
