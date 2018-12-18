@@ -22,7 +22,7 @@ class GambitScheme < Formula
       s.gsub! "SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);", ""
     end
 
-    ENV["CC"] = Formula["gcc@6"].bin/"gcc-6"
+    ENV["CC"] = Formula["gcc"].bin/"gcc"
     system "./configure", *args
     system "make"
     ENV.deparallelize
