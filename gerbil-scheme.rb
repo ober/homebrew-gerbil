@@ -6,7 +6,7 @@ class GerbilScheme < Formula
   head "https://github.com/vyzo/gerbil.git"
 
   depends_on "gambit-scheme"
-  depends_on "gcc@6"
+  depends_on "gcc"
   depends_on "leveldb"
   depends_on "libxml2"
   depends_on "libyaml"
@@ -18,7 +18,7 @@ class GerbilScheme < Formula
 
   def install
     cd "src" do
-      ENV["CC"] = "#{Formula['gcc@6'].bin}/gcc-6"
+      ENV["CC"] = "#{Formula['gcc'].bin}/gcc"
 
       ENV.append_path "PATH", "/usr/local/Cellar/gambit-scheme/4.9.1/v4.9.1/bin"
 
