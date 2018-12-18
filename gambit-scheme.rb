@@ -17,6 +17,9 @@ class GambitScheme < Formula
       --enable-openssl
     ]
 
+    system "sed -i -e 's#SSL_CTX_set_default_verify_paths (c->tls_ctx);##g' lib/os_io.c"
+    system "sed -i -e 's#SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);##g' lib/os_io.c"
+
     ENV["CC"] = Formula["gcc@6"].bin/"gcc-6"
     system "./configure", *args
     system "make"
