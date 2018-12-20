@@ -30,11 +30,13 @@ class GerbilScheme < Formula
       end
 
       ENV.prepend "CPPFLAGS", "-I#{Formula["libyaml"].opt_include}"
+      ENV.prepend "CPPFLAGS", "-I#{Formula["leveldb"].opt_include}"
       ENV.prepend "CPPFLAGS", "-I#{Formula["lmdb"].opt_include}"
       ENV.prepend "CPPFLAGS", "-I#{Formula["mysql"].opt_include}" if MacOS.version > "10.11"
       ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
       ENV.prepend "LDFLAGS", "-L#{Formula["libyaml"].opt_lib}"
       ENV.prepend "LDFLAGS", "-L#{Formula["lmdb"].opt_lib}"
+      ENV.prepend "LDFLAGS", "-L#{Formula["leveldb"].opt_lib}"
       ENV.prepend "LDFLAGS", "-L#{Formula["mysql"].opt_lib}" if MacOS.version > "10.11"
       ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib}"
       system "./build.sh"
