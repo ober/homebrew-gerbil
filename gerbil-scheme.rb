@@ -6,6 +6,7 @@ class GerbilScheme < Formula
   head "https://github.com/vyzo/gerbil.git"
 
   depends_on "gambit-scheme"
+  depends_on "gcc"
   depends_on "leveldb"
   depends_on "libxml2"
   depends_on "libyaml"
@@ -28,10 +29,12 @@ class GerbilScheme < Formula
         s.gsub! '(enable mysql #f)', '(enable mysql #t)' if MacOS.version > "10.11"
       end
 
-      ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
-      ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib}"
       ENV.prepend "CPPFLAGS", "-I#{Formula["libyaml"].opt_include}"
+      ENV.prepend "CPPFLAGS", "-I#{Formula["lmdb"].opt_include}"
+      ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
       ENV.prepend "LDFLAGS", "-L#{Formula["libyaml"].opt_lib}"
+      ENV.prepend "LDFLAGS", "-L#{Formula["lmdb"].opt_lib}"
+      ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib}"
       system "./build.sh"
     end
 
