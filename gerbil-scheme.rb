@@ -11,7 +11,6 @@ class GerbilScheme < Formula
   depends_on "libxml2"
   depends_on "libyaml"
   depends_on "lmdb"
-  depends_on "mysql" if MacOS.version > "10.11"
   depends_on "openssl"
   depends_on "sqlite3"
   depends_on "zlib"
