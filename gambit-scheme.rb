@@ -18,8 +18,7 @@ class GambitScheme < Formula
     ]
 
     inreplace "lib/os_io.c" do |s|
-      s.gsub! 'SSL_CTX_set_default_verify_paths (c->tls_ctx);', ''
-      s.gsub! 'SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);', ''
+      s.gsub! 'SSL_VERIFY_PEER', 'SSL_VERIFY_NONE'
     end
 
     ENV['CC'] =  Formula['gcc'].opt_bin/Formula['gcc'].aliases.first.gsub("@","-")
