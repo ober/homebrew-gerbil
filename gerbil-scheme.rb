@@ -6,7 +6,6 @@ class GerbilScheme < Formula
   head "https://github.com/vyzo/gerbil.git"
 
   depends_on "gambit-scheme"
-  depends_on "gcc"
   depends_on "leveldb"
   depends_on "libxml2"
   depends_on "libyaml"
@@ -18,15 +17,15 @@ class GerbilScheme < Formula
 
   def install
     cd "src" do
-      ENV["CC"] = "#{Formula['gcc'].bin}/gcc"
-      ENV.append_path "PATH", "/usr/local/Cellar/gambit-scheme/4.9.1/v4.9.1/bin"
+      ENV.append_path "PATH", "#{Formula['gambit-scheme'].opt_prefix}/current/bin"
+      ENV['CC'] =  Formula['gcc'].opt_bin/Formula['gcc'].aliases.first.gsub("@","-")
 
       inreplace "std/build-features.ss" do |s|
-        s.gsub! "(enable leveldb #f)", "(enable leveldb #t)"
-        s.gsub! "(enable libxml #f)", "(enable libxml #t)"
-        s.gsub! "(enable libyaml #f)", "(enable libyaml #t)"
-        s.gsub! "(enable lmdb #f)", "(enable lmdb #t)"
-        s.gsub! "(enable mysql #f)", "(enable mysql #t)" if MacOS.version > "10.11"
+        s.gsub! '(enable leveldb #f)', '(enable leveldb #t)'
+        s.gsub! '(enable libxml #f)', '(enable libxml #t)'
+        s.gsub! '(enable libyaml #f)', '(enable libyaml #t)'
+        s.gsub! '(enable lmdb #f)', '(enable lmdb #t)'
+        s.gsub! '(enable mysql #f)', '(enable mysql #t)' if MacOS.version > "10.11"
       end
 
       ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include}"
