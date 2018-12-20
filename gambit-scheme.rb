@@ -23,8 +23,6 @@ class GambitScheme < Formula
     end
 
     ENV['CC'] =  Formula['gcc'].opt_bin/Formula['gcc'].aliases.first.gsub("@","-")
-
-    ENV["CC"] = "/usr/local/bin/gcc-8"
     system "./configure", *args
     system "make"
     ENV.deparallelize
