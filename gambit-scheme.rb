@@ -5,7 +5,7 @@ class GambitScheme < Formula
   sha256 "667ae2ee657c22621a60b3eda6e242224d41853adb841e6ff9bc779f19921c18"
 
   depends_on "openssl"
-  depends_on "gcc@8"
+  depends_on "gcc"
 
   def install
     args = %W[
@@ -21,6 +21,8 @@ class GambitScheme < Formula
       s.gsub! 'SSL_CTX_set_default_verify_paths (c->tls_ctx);', ''
       s.gsub! 'SSL_CTX_set_verify (c->tls_ctx, SSL_VERIFY_PEER, NULL);', ''
     end
+
+    ENV['CC'] =  Formula['gcc'].opt_bin/Formula['gcc'].aliases.first.gsub("@","-")
 
     ENV["CC"] = "/usr/local/bin/gcc-8"
     system "./configure", *args
